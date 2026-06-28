@@ -1,7 +1,7 @@
 import taichi as ti
 
 # 初始化 Taichi GPU 后端 (Mac 自动调用 Metal，Win 调用 CUDA/Vulkan)
-ti.init(arch=ti.gpu)
+ti.init(arch=ti.cpu)
 
 res_x, res_y = 800, 600
 pixels = ti.Vector.field(3, dtype=ti.f32, shape=(res_x, res_y))
