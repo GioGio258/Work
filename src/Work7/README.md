@@ -1,5 +1,7 @@
 # 实验七：质点弹簧系统
 
+202411998380 宋正华 计算机科学与技术
+
 ## 实验目标
 
 1. 理解质点弹簧系统（Mass Spring System）的物理原理与数学模型
@@ -32,32 +34,30 @@ Work7/
 
 ### 2. 初始化函数
 
-- **init_positions()**：初始化质点位置与固定状态
+- **init\_positions()**：初始化质点位置与固定状态
   - 将布料放置在三维空间的 XY 平面上
   - 固定第一排的两个角点（左上角和右上角）
-- **init_springs()**：初始化结构弹簧
+- **init\_springs()**：初始化结构弹簧
   - 右侧相邻点（水平方向）
   - 下方相邻点（垂直方向）
-- **init_spring_indices()**：同步渲染索引，用于绘制弹簧线框
+- **init\_spring\_indices()**：同步渲染索引，用于绘制弹簧线框
 
 ### 3. 力计算
 
-- **compute_forces_on()**：
+- **compute\_forces\_on()**：
   - 清空受力，施加重力与阻尼
-  - 累加弹簧力（使用 atomic_add 保证多线程安全）
+  - 累加弹簧力（使用 atomic\_add 保证多线程安全）
   - 弹簧力公式：`F = -k_s * (dist - rest_length) * normalized_dir`
 
 ### 4. 三种积分方法
 
-- **step_explicit()**：显式欧拉（Explicit Euler）
+- **step\_explicit()**：显式欧拉（Explicit Euler）
   - 先更新位置，再更新速度
   - 极易发散，需要极小的时间步长
-
-- **step_semi_implicit()**：半隐式欧拉（Semi-Implicit Euler）
+- **step\_semi\_implicit()**：半隐式欧拉（Semi-Implicit Euler）
   - 先更新速度，再用新速度更新位置
   - 相对稳定，是游戏物理引擎中最常用的方法
-
-- **step_implicit_iter()**：隐式欧拉（Implicit Euler）
+- **step\_implicit\_iter()**：隐式欧拉（Implicit Euler）
   - 使用定点迭代法近似求解未来状态
   - 数值阻尼大，最为稳定但会有能量耗散
 
@@ -173,3 +173,4 @@ x_{n+1} = x_n + v_{n+1} * dt
 - 本实验仅实现了结构弹簧，实际布料模拟还可加入：
   - 剪切弹簧（Shear Springs）：连接对角线方向的质点
   - 弯曲弹簧（Bend Springs）：连接间隔一个质点的位置
+
